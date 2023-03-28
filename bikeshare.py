@@ -190,17 +190,25 @@ def load_data(city, month, day):
 
     df["Start Time"] = pd.to_datetime(df["Start Time"])
 
-    # extract month and day of week from Start Time to create new columns
+    # extract month from Start Time to create new column
     df["month"] = df["Start Time"].dt.month
+    
+    # extract day of week from Start Time to create new column
     df["day_of_week"] = df["Start Time"].dt.day_name()
+    
+    # extract hour from Start Time to create new column
     df["hour"] = df["Start Time"].dt.hour
+
+    # Concatenate Start and End station to create new column route
     df["route"] = df.apply(lambda row: get_route(row), axis=1)
     if "Birth Year" in df:
         df["age_range"] = df.apply(lambda row: age_range(row), axis=1)
 
+    # Filter by Month when different from all
     if month != "all":
         df = df[df["month"] == MONTHS_NAMES[month]]
 
+    # Filter by day of week when different from all
     if day != "all":
         df = df[df["day_of_week"] == day.title()]
 
