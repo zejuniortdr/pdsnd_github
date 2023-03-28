@@ -7,7 +7,11 @@ March, 28th 2023
 Udacity Programming for Data Science with Python: Introduction to version control
 
 ### Description
-This project puts into practice the concepts learned in the git course for the project
+This project puts into practice the concepts learned in the git course for the project:
+- Clone a repository
+- Working with branches
+- Create a pull request
+- Merge
 
 ### Files used
 Include the files used
@@ -16,7 +20,7 @@ Include the files used
 
 ### Local setup:
 - Clone this repo: `git clone git@github.com:zejuniortdr/pdsnd_github.git`
-- Change directory to this project: `cd pdsnd_github` 
+- Change directory to this project: `cd pdsnd_github`
 - Install dependencies: `pipenv install --python 3.10 --dev`
 
 ### Credits
