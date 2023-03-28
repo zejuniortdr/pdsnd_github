@@ -23,9 +23,12 @@ Include the files used
 - Change directory to this project: `cd pdsnd_github`
 - Install dependencies: `pipenv install --python 3.10 --dev`
 
+If you do not have python 3.10 installed, consider use pyenv to manage different versions of python for each project
+
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
 - https://github.com/udacity/pdsnd_github
+- https://github.com/pyenv/pyenv
 - https://github.com/pypa/pipenv
 - https://github.com/psf/black
 - https://github.com/PyCQA/flake8
