@@ -14,6 +14,11 @@ Include the files used
 - bikeshare.py
 - Pipfile
 
+### Local setup:
+- Clone this repo: `git clone git@github.com:zejuniortdr/pdsnd_github.git`
+- Change directory to this project: `cd pdsnd_github` 
+- Install dependencies: `pipenv install --python 3.10 --dev`
+
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
 - https://github.com/udacity/pdsnd_github
