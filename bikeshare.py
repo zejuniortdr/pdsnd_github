@@ -1,11 +1,12 @@
-from datetime import datetime, timedelta
+from __future__ import absolute_import, print_function  # isort:skip
+from six.moves import input  # isort:skip
 import os
 import platform
 import sys
 import time
+from datetime import datetime, timedelta
 
 import pandas as pd
-
 
 CITY_DATA = {
     "chicago": "chicago.csv",
@@ -64,7 +65,7 @@ def age_range(row, step=10):
     Returns:
         (str) Date Range, for example: "0-10", "10-20", "20-30"
         (str) "N/A" when non applicable
-        (str) "" (empty string) Some cities do not have year of birth 
+        (str) "" (empty string) Some cities do not have year of birth
     """
     try:
         age = datetime.now().year - int(row["Birth Year"])
@@ -161,7 +162,7 @@ def get_filters():
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day = get_input_data("day of week", WEEKDAYS_NAMES, enable_all=True)
 
-    print("-" * 40)
+    print(("-" * 40))
     return city, month, day
 
 
@@ -192,10 +193,10 @@ def load_data(city, month, day):
 
     # extract month from Start Time to create new column
     df["month"] = df["Start Time"].dt.month
-    
+
     # extract day of week from Start Time to create new column
     df["day_of_week"] = df["Start Time"].dt.day_name()
-    
+
     # extract hour from Start Time to create new column
     df["hour"] = df["Start Time"].dt.hour
 
@@ -250,7 +251,7 @@ def time_stats(df):
     )
 
     print(f"\nThis took {time.time() - start_time} seconds.")
-    print("-" * 40)
+    print(("-" * 40))
     print("\n\n")
 
 
@@ -284,7 +285,7 @@ def station_stats(df):
     )
 
     print(f"\nThis took {time.time() - start_time} seconds.")
-    print("-" * 40)
+    print(("-" * 40))
     print("\n\n")
 
 
@@ -323,7 +324,7 @@ def trip_duration_stats(df):
     )
 
     print(f"\nThis took {time.time() - start_time} seconds.")
-    print("-" * 40)
+    print(("-" * 40))
     print("\n\n")
 
 
@@ -336,13 +337,13 @@ def user_stats(df):
     # Display counts of user types
     df_users_types = df.groupby(["User Type"])["User Type"].count()
     print()
-    print(df_users_types.to_string())
+    print((df_users_types.to_string()))
 
     try:
         # Display counts of gender
         df_gender = df.groupby(["Gender"])["Gender"].count()
         print("\n")
-        print(df_gender.to_string())
+        print((df_gender.to_string()))
         empty = len(df) - sum(df_gender.values.tolist())
         print(f"Empty {empty}")
     except KeyError:
@@ -361,14 +362,14 @@ def user_stats(df):
 
         print("\n\nUser's date range\n")
         df_age_range = df.groupby(["age_range"])["age_range"].count()
-        print(df_age_range.sort_values(ascending=False).to_string())
+        print((df_age_range.sort_values(ascending=False).to_string()))
 
     except KeyError:
         # Some cities do not have year of birth
         pass
 
     print(f"\nThis took {time.time() - start_time} seconds.")
-    print("-" * 40)
+    print(("-" * 40))
     print("\n\n")
 
 
@@ -379,9 +380,11 @@ def raw_data(df):
 
     try:
         step = int(
-            input(
-                "\nHow many rows do you want to see? "
-                "(min: 1, max: 60) (Default: 5) "
+            eval(
+                input(
+                    "\nHow many rows do you want to see? "
+                    "(min: 1, max: 60) (Default: 5) "
+                )
             )
         )
         step = max(step_min, min(step, step_max))
@@ -391,11 +394,13 @@ def raw_data(df):
     end = start + step
     while True:
         print("\n")
-        print(df.iloc[start:end, :-4])
+        print((df.iloc[start:end, :-4]))
         print(f"Showing {step} rows ({start}:{end}) rows of {total_rows}")
-        user_input = input(
-            f"\nDo you want to see the next {step} rows? (yes/no): "
-        ).lower()
+        user_input = eval(
+            input(
+                f"\nDo you want to see the next {step} rows? (yes/no): "
+            ).lower()
+        )
 
         if user_input != "yes":
             break
@@ -406,7 +411,7 @@ def raw_data(df):
 
 def menu():
     """Displays menu to users."""
-    print("-" * 40)
+    print(("-" * 40))
     print(
         "To analise the data, please choose a menu number, "
         "or type 9 to restart or 0 to exit"
@@ -418,7 +423,7 @@ def menu():
     print("5 - Raw Data")
     print("9 - Restart")
     print("0 - Exit")
-    print("-" * 40)
+    print(("-" * 40))
     option = get_input_data("menu", ["1", "2", "3", "4", "5", "9", "0"])
 
     if option == "0":
@@ -431,7 +436,7 @@ def menu():
 def header(city, month, day):
     """Displays header with the chosen filters to users."""
     print("\n\n\n")
-    print("=" * 50)
+    print(("=" * 50))
     print("Chosen Filters:")
     print(f"City: {city}")
     print(f"Month: {month}")
