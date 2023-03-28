@@ -17,6 +17,8 @@ This project puts into practice the concepts learned in the git course for the p
 Include the files used
 - bikeshare.py
 - Pipfile
+- .pre-commit-config.yaml
+- pyproject.toml
 
 ### Local setup:
 - Clone this repo: `git clone git@github.com:zejuniortdr/pdsnd_github.git`
