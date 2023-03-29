@@ -64,7 +64,7 @@ def age_range(row, step=10):
     Returns:
         (str) Date Range, for example: "0-10", "10-20", "20-30"
         (str) "N/A" when non applicable
-        (str) "" (empty string) Some cities do not have year of birth 
+        (str) "" (empty string) Some cities do not have year of birth
     """
     try:
         age = datetime.now().year - int(row["Birth Year"])
